@@ -153,10 +153,10 @@ function makeDoc(S){
  const set=(s,b)=>{d.setFont("helvetica",b?"bold":"normal");d.setFontSize(s*S)};
  const need=h=>{if(y+h>264){d.addPage();y=18}};
  const para=(t,b,x=M,w=R-M)=>{set(10,b);const l=d.splitTextToSize(t,w);need(l.length*u(5)+u(2));d.text(l,x,y);y+=l.length*u(5)+u(2)};
- const kv=(k,v,b,c1=44)=>{if(!v)return;set(10);const l=d.splitTextToSize(String(v),R-M-c1-4);need(l.length*u(5)+u(1));d.text(k,M,y);d.text(":",M+c1-3,y);set(10,b);d.text(l,M+c1,y);y+=l.length*u(5)+u(1.5)};
+ const kv=(k,v,b,c1=44)=>{if(!v)return;set(10);const l=d.splitTextToSize(String(v),R-M-c1-4);need(l.length*u(5)+u(1));d.text(k,M,y);d.text(":",M+c1-3,y);set(10);d.text(l,M+c1,y);y+=l.length*u(5)+u(1.5)};
  d.addImage(lg.src,"JPEG",W/2-LW/2,y,LW,LH);y+=LH+u(4);
  d.setDrawColor(60);d.setLineWidth(.2);d.rect(W/2-40,y,80,u(12));set(10,1);d.text("Divine Harmony Choir - Colombo",W/2,y+u(5),{align:"center"});set(10);d.text("+94 77 322 6375",W/2,y+u(9.5),{align:"center"});y+=u(17);
- d.rect(M,y,R-M,u(29));set(10.5,1);d.text("Client Details :  "+(N.cn||"-"),M+4,y+u(7));set(10.5);
+ d.rect(M,y,R-M,u(29));set(10,1);d.text("Client Details :  "+(N.cn||"-"),M+4,y+u(7));set(10);
  d.text("Contact Number : "+(N.cp||"-"),M+4,y+u(14));d.text((type==="quo"?"Quotation":"Invoice")+" Number : "+N.dn,M+4,y+u(20.5));d.text("Date : "+N.dd,M+4,y+u(26));y+=u(37);
  set(21);d.setTextColor(...G);d.text(TT[type][1],W/2,y,{align:"center"});d.setTextColor(0);y+=u(11);
  const pkg=`${ft} - ${L.filter(i=>i.a!==null||/Keyboard/.test(i.d)).map(i=>i.d.replace(/ \(Rs\. [\d,.]+ each\)/,"")).join(", ").replace(/^Choir \((\d+) members?\)/,"$1 vocalist(s)")}${sound?", with the sound setup and a technician":""}`;
@@ -171,7 +171,7 @@ function makeDoc(S){
   kv("Function",ft);kv("Date",N.ev);kv("Location",N.loc);kv("Special requests",N.req);y+=u(4);
   const x2=R-44;need(16);d.setFillColor(244,239,224);d.setDrawColor(120);d.rect(M,y,R-M,u(8),"FD");set(10,1);d.text("Description",M+3,y+u(5.5));d.text("Amount (LKR)",R-3,y+u(5.5),{align:"right"});y+=u(8);
   L.forEach(i=>{set(10);const l=d.splitTextToSize(i.d,x2-M-8),h=l.length*u(5)+u(3.5);need(h);d.text(l,M+3,y+u(5));d.text(i.a===null?"Included":money(i.a),R-3,y+u(5),{align:"right"});y+=h;d.setDrawColor(215);d.line(M,y,R,y)});
-  d.setDrawColor(120);d.rect(M,y,R-M,u(9));set(11,1);d.text("Total Amount",M+3,y+u(6));d.setTextColor(...G);d.text("Rs. "+money(tot),R-3,y+u(6),{align:"right"});d.setTextColor(0);y+=u(15);
+  d.setDrawColor(120);d.rect(M,y,R-M,u(9));set(10,1);d.text("Total Amount",M+3,y+u(6));d.setTextColor(...G);d.text("Rs. "+money(tot),R-3,y+u(6),{align:"right"});d.setTextColor(0);y+=u(15);
   para("* "+(sound?`${word} price includes the sound setup with a professional technician.`:"Client will provide sound setup and a technician."));
   para(`* A 25% advance payment (Rs. ${money(tot*.25)}) is required to confirm the reservation, with the remaining balance to be settled on or before the day of the function.`);
   y+=u(3);need(u(28));set(10,1);d.text("Transfer To;",M,y);y+=u(5);["A/C Name : PLSR COORAY","A/C Number : 3750369","Bank Name : Bank of Ceylon (BOC)","Branch : Wadduwa"].forEach(t=>{d.text(t,M,y);y+=u(5)});
